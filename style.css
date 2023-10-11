@@ -1,20 +1,25 @@
-
+html {
+  background-color: rgb(9, 171, 23);
+  color: rgb(46, 6, 245);
+}
+#start{
+  background: rgb(245, 237, 1);
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+  padding: 15px 30px;
+  border-radius: 50%;
+  border-color: #d1f96d;
+  font-size: large;
+  display: none;
+}
 .game-body {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
 }
-
 #score {
-    font-size: 140px;
-    font-family: serif;
-}
-#gameCanvas{
-    background-color: aqua;
-}
-body{
-    background-color: yellow;
-}
-#score{
-    background-color:rgb(255, 200, 0)
+  font-size: 90px;
+  font-family: sans-serif;
 }
