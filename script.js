@@ -139,6 +139,7 @@ button.addEventListener('click' ,function (){
   setTimeout(() => {
     changeDirection = false;
     clearCanvas();
+    createFood()
     drawFood();
     advanceSnake();
     drawSnake();
