@@ -13,10 +13,11 @@ let foodY;
 
 let dx = 10;
 let dy = 0;
-let button=document.querySelector('#start');
+let button = document.querySelector("#start");
 let score = 0;
 let changingDirection = false;
 document.addEventListener("keydown", changeDirection);
+
 function changeDirection(event) {
   const LEFT_KEY = 37;
   const RIGHT_KEY = 39;
@@ -26,6 +27,7 @@ function changeDirection(event) {
   if (changeDirection) return;
   changeDirection = true;
   const keyPressed = event.keyCode;
+  
   if (keyPressed == LEFT_KEY && dx !== 10) {
     dx = -10;
     dy = 0;
@@ -53,26 +55,23 @@ function main() {
     changeDirection = false;
     clearCanvas();
     drawFood();
-    advanceSnake();
+    playing();
     drawSnake();
     displayStart();
-
     main();
   }, 100);
 }
 
-function didGameEnd() {  
+function didGameEnd() {
   for (let i = 1; i < snake.length; i++) {
     if (snake[0].x == snake[i].x && snake[0].y == snake[i].y) return true;
     1;
-    
   }
 
   const leftWall = snake[0].x < 0;
   const rightWall = snake[0].x > gameCanvas.width - 10;
   const topWall = snake[0].y < 0;
   const bottomWall = snake[0].y > gameCanvas.height - 10;
-  
   return leftWall || topWall || rightWall || bottomWall;
 }
 
@@ -93,7 +92,7 @@ let createFood = () => {
   });
 };
 
-let advanceSnake = () => {
+function playing() {
   const head = { x: snake[0].x + dx, y: snake[0].y + dy };
 
   snake.unshift(head);
@@ -104,7 +103,7 @@ let advanceSnake = () => {
   } else {
     snake.pop();
   }
-};
+}
 
 let drawSnake = () => snake.forEach(drowSnakePart);
 let drowSnakePart = (snakePart) => {
@@ -127,25 +126,43 @@ snake.forEach((snakePart) => {
   ctx.fillRect(snakePart.x, snakePart.y, 10, 10);
   ctx.strokeRect(snakePart.x, snakePart.y, 10, 10);
 });
+
 createFood();
 main();
- let displayStart=()=>{
-  if(didGameEnd()){
-    button.style.display='block';
+let displayStart = () => {
+  if (didGameEnd()) {
+    button.style.display = "block";
   }
+};
+
+function newSnake() {
+  snake = [
+    { x: 150, y: 150 },
+    { x: 140, y: 150 },
+    { x: 130, y: 150 },
+    { x: 120, y: 150 },
+    { x: 110, y: 150 },
+  ];
 }
-button.addEventListener('click' ,function (){
+
+button.addEventListener("click", function () {
+  createFood();
+  playing();
+  newSnake();
+  score = 0;
+  document.getElementById("score").innerHTML = score;
+});
+
+function start() {
   if (didGameEnd()) return;
   setTimeout(() => {
     changeDirection = false;
     clearCanvas();
-    createFood()
     drawFood();
-    advanceSnake();
+    playing();
     drawSnake();
     displayStart();
-
     main();
   }, 100);
-})
-  
+  button.style.display = "none";
+};                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 
