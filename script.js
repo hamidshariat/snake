@@ -68,7 +68,7 @@ function didGameEnd() {
     1;
   }
 
-  const leftWall = snake[0].x < 0;
+  const leftWall =snake[0].x < 0;
   const rightWall = snake[0].x > gameCanvas.width - 10;
   const topWall = snake[0].y < 0;
   const bottomWall = snake[0].y > gameCanvas.height - 10;
@@ -154,14 +154,7 @@ button.addEventListener("click", function () {
 });
 
 function start() {
-  if (didGameEnd()) return;
   setTimeout(() => {
-    changeDirection = false;
-    clearCanvas();
-    drawFood();
-    playing();
-    drawSnake();
-    displayStart();
     main();
   }, 100);
   button.style.display = "none";
